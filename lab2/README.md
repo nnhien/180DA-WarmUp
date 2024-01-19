@@ -1,6 +1,10 @@
 # Lab 2: MQTT and Speech Recognition
 
 ## MQTT
+![Screenshot](<Screenshot 2024-01-18 at 4.00.44 PM.png>)
+
+Figure 1. Sending counter in a ring topology with Krish Shah (client to which messages are being sent to) and Matthew Fiorella (client from which messages are being received)
+
 MQTT makes it possible to communicate with many devices at once. It is very easy to do a multicast transmission with MQTT. It is a little cumbersome to communicate to individual devices, since either we'd need to know the topic a particular client is subscribed to a priori, or we'd need to dynamically populate a list of available clients. I used a 1 second delay between messages and it seemed to perform as expected, so on that timescale the delay caused MQTT is insignificant.
 
 ## Speech Recognition
