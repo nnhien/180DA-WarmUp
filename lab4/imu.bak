@@ -1,0 +1,57 @@
+/*
+  Printing out IMU data from Arduino 33 IoT
+*/
+
+#include <Arduino.h>
+#include <Arduino_LSM6DS3.h>
+
+// put function declarations here:
+float gx, gy, gz;
+float ax, ay, az;
+
+void setup() {
+  // put your setup code here, to run once:
+  Serial.begin(9600);
+  while (!Serial);
+  Serial.println("IMU 33 IoT");
+
+  if (!IMU.begin()) {
+    Serial.println("Failed to initialize IMU");
+    return;
+  }
+
+  Serial.print("Gyroscope sample rate = ");
+  Serial.print(IMU.gyroscopeSampleRate());
+  Serial.println(" Hz");
+  Serial.println();
+  Serial.println("Gyroscope in degrees/second");
+
+  Serial.print("Accelerometer sample rate = ");
+  Serial.print(IMU.accelerationSampleRate());
+  Serial.println(" Hz");
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+  if (IMU.gyroscopeAvailable()) {
+    IMU.readGyroscope(gx, gy, gz);
+  }
+  if (IMU.accelerationAvailable()) {
+    IMU.readAcceleration(ax, ay, az);
+  }
+  Serial.print("gx: ");
+  Serial.print(gx);
+  Serial.print("\tgy: ");
+  Serial.print(gy);
+  Serial.print("\tgz: ");
+  Serial.print(gz);
+
+  Serial.print("\t");
+
+  Serial.print("\tax: ");
+  Serial.print(ax);
+  Serial.print("\tay: ");
+  Serial.print(ay);
+  Serial.print("\taz: ");
+  Serial.println(az);
+}
